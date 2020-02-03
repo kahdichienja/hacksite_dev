@@ -1,0 +1,190 @@
+{% extends 'examcardbase.html' %}
+
+
+{% block content %}
+<!-- start page container -->
+<div class="page-container">
+    <!-- start sidebar menu -->
+    {% include 'includes/sidebar.html' %}
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">Profile</div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+                                href="{% url 'home_dashboard' %}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">Profile Create</li>
+                    </ol>
+                </div>
+                {% if messages %}
+                    {% for  message in messages %}
+                        <div class="alert alert-{{message.tags}}">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <!-- start widget -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form action="{% url 'student_create_profile' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-box">
+                            <div class="card-head">
+                                <header>Basic Profile Information</header>
+                                <div id="panel-button" class="mdl-button mdl-js-button mdl-button--icon pull-right"
+                                    data-upgraded=",MaterialButton">
+                                    <i class="material-icons">more_vert</i>
+                                </div>
+                                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                    data-mdl-for="panel-button">
+                                    <li class="mdl-menu__item"><i class="material-icons">assistant_photo</i>Action
+                                    </li>
+                                    <li class="mdl-menu__item"><i class="material-icons">print</i>Another action
+                                    </li>
+                                    <li class="mdl-menu__item"><i class="material-icons">favorite</i>Something else
+                                        here</li>
+                                </ul>
+                            </div>
+                            <div class="card-body row">
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        {{ profileform.first_name }}
+                                        <label class="mdl-textfield__label">First Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        {{ profileform.last_name }}
+                                        <label class="mdl-textfield__label">Last Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        {{ profileform.sirname }}
+                                        <label class="mdl-textfield__label">Sirname</label>
+                                        <span class="mdl-textfield__error">Enter Valid Name!</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        {{ profileform.adm_number }}
+                                        <label class="mdl-textfield__label">Admission Number</label>
+                                        <span class="mdl-textfield__error">Admission Number required!</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        {{ profileform.year_of_study }}
+                                        <label class="mdl-textfield__label">Year Of Study</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                        {{ profileform.accademic_year }}
+                                        <label for="accademic_year" class="pull-right margin-0">
+                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                        </label>
+                                        <label for="accademic_year" class="mdl-textfield__label">Accademic Year</label>
+                                        <ul data-mdl-for="accademic_year"
+                                            class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                            <li data-val="DE" class="mdl-menu__item">2019/2020</li>
+                                            <li data-val="DE" class="mdl-menu__item">2018/2019</li>
+                                            <li data-val="DE" class="mdl-menu__item">2017/2018</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                        {{ profileform.study_method }}
+                                        <label for="study_method" class="pull-right margin-0">
+                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                        </label>
+                                        <label for="study_method" class="mdl-textfield__label">Study Method</label>
+                                        <ul data-mdl-for="study_method"
+                                            class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                            <li class="mdl-menu__item" data-val="DE">REGULAR</li>
+                                            <li class="mdl-menu__item" data-val="BY">PSSP</li>
+                                            <li class="mdl-menu__item" data-val="DE">REGULAR</li>
+                                            <li class="mdl-menu__item" data-val="BY">PSSP</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                        {{ profileform.programme }}
+                                        <label for="programme" class="pull-right margin-0">
+                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                        </label>
+                                        <label for="programme" class="mdl-textfield__label">Programme</label>
+                                        <ul data-mdl-for="programme" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                            <li class="mdl-menu__item" data-val="DE">Bachelor Of Science In Computer
+                                                Science</li>
+                                            <li class="mdl-menu__item" data-val="BY">Bachelor SANRES</li>
+                                            <li class="mdl-menu__item" data-val="DE">Bachelor Of Science In Computer
+                                                Science</li>
+                                            <li class="mdl-menu__item" data-val="BY">Bachelor INFOCOMS</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                        {{ profileform.school }}
+                                        <label for="school" class="pull-right margin-0">
+                                            <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                                        </label>
+                                        <label for="school" class="mdl-textfield__label">School</label>
+                                        <ul data-mdl-for="school" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                                            <li class="mdl-menu__item" data-val="DE">School Of Science In Computer
+                                                Science</li>
+                                            <li class="mdl-menu__item" data-val="BY">School SANRES</li>
+                                            <li class="mdl-menu__item" data-val="DE">School Of Science In Computer
+                                                Science</li>
+                                            <li class="mdl-menu__item" data-val="BY">School INFOCOMS</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 p-t-20">
+                                    <label class="control-label col-md-3">Upload Photo
+                                    </label>
+                                    <div class="col-md-12 dropzone">
+                                        {{profileform.profile_photo}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 p-t-20 text-center">
+                                    <button type="submit"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Submit</button>
+                                    <button type="reset"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end widget -->
+
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+    {% include 'includes/applicationsettings.html' %}
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+{% endblock %}

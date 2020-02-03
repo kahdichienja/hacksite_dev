@@ -1,0 +1,132 @@
+{% extends 'examcardbase.html' %}
+
+
+{% block content %}
+<!-- start page container -->
+<div class="page-container">
+    <!-- start sidebar menu -->
+    {% include 'includes/sidebar.html' %}
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">Dashboard</div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{% url 'home_dashboard' %}">Home</a>&nbsp;<i
+                                class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- start widget -->
+            <div class="state-overview">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 col-12">
+                        <div class="info-box bg-b-green">
+                            <span class="info-box-icon push-bottom"><i class="material-icons">list</i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Units</span>
+                                <span class="info-box-number">45</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 45%"></div>
+                                </div>
+                                <span class="progress-description">
+                                    45% Of 100%
+                                </span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xl-3 col-md-6 col-12">
+                        <div class="info-box bg-b-yellow">
+                            <span class="info-box-icon push-bottom"><i class="material-icons">person</i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Year Of Study Level</span>
+                                <span class="info-box-number">3</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 75%"></div>
+                                </div>
+                                <span class="progress-description">
+                                    3 of 4
+                                </span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xl-3 col-md-6 col-12">
+                        <div class="info-box bg-b-blue">
+                            <span class="info-box-icon push-bottom"><i class="material-icons">school</i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Courses   </span>
+                                <span class="info-box-number">52</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 85%"></div>
+                                </div>
+                                <span class="progress-description">
+                                    85% Of 100%
+                                </span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xl-3 col-md-6 col-12">
+                        {% for fee in fee_qs %}
+                            {% if fee.is_completed == 1 %}
+                                <div class="info-box bg-b-pink">
+                                    <span class="info-box-icon push-bottom"><i class="material-icons">monetization_on</i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Fees Completion</span>
+                                        <span class="info-box-number">{{fee.is_completed}}</span><span></span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 100%"></div>
+                                        </div>
+                                        <span class="progress-description">
+                                            100% Fees
+                                        </span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                                {% else %}
+                                <div class="info-box bg-b-pink">
+                                    <span class="info-box-icon push-bottom"><i class="material-icons">monetization_on</i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Fees Completion</span>
+                                        <span class="info-box-number">{{fee.is_completed}}</span><span></span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 1%"></div>
+                                        </div>
+                                        <span class="progress-description">
+                                            0% Fees
+                                        </span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            {% endif %}                        
+                        {% endfor %}
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </div>
+            <!-- end widget -->
+
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+    {% include 'includes/applicationsettings.html' %}
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+{% endblock %}

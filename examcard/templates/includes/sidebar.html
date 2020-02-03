@@ -1,0 +1,76 @@
+{% load static %}
+<!-- start sidebar menu -->
+<div class="sidebar-container">
+    <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+        <div id="remove-scroll" class="left-sidemenu">
+            <ul class="sidemenu  page-header-fixed slimscroll-style" data-keep-expanded="false" data-auto-scroll="true"
+                data-slide-speed="200" style="padding-top: 20px">
+                <li class="sidebar-toggler-wrapper hide">
+                    <div class="sidebar-toggler">
+                        <span></span>
+                    </div>
+                </li>
+                <li class="sidebar-user-panel">
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="/profile{{user.studentprofile.profile_photo.url}}" class="img-circle user-img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p> {{user.studentprofile.first_name}} {{user.studentprofile.last_name}}</p>
+                            <a href="#"><i class="material-icons green-text">adjust</i><span class="txtOnline">
+                                    Online</span></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item start active open">
+                        <a href="#" class="nav-link nav-toggle">
+                            <i class="material-icons">apps</i>
+                            <span class="title">Exam Card</span>
+                            <span class="selected"></span>
+                            <i class="material-icons open">arrow_drop_down</i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item active">
+                                <a href="{% url 'home_dashboard' %}" class="nav-link">
+                                    <i class="material-icons">apps</i>
+                                    <span class="title">Dashboard</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="{% url 'exam_card' %}" class="nav-link ">
+                                    <i class="material-icons">dashboard</i>
+                                    <span class="title">Exam Card</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                <li class="nav-item start">
+                    <a href="#" class="nav-link nav-toggle">
+                        <i class="material-icons">person</i>
+                        <span class="title">Profile</span>
+                        <span class="selected"></span>
+                        <i class="material-icons open">arrow_drop_down</i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item">
+                            <a href="{% url 'student_create_profile' %}" class="nav-link">
+                                <i class="material-icons">mode_edit</i>
+                                <span class="title">Creat Profile</span>
+                                <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a href="{% url 'unit' %}" class="nav-link ">
+                                <i class="material-icons">add</i>
+                                <span class="title">Add Units</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- end sidebar menu -->

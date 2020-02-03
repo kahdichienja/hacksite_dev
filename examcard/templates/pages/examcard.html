@@ -1,0 +1,153 @@
+{% extends 'examcardbase.html' %}
+{% load static %}
+{% load qr_code %}
+{% block content %}
+<!-- start page container -->
+<div class="page-container">
+    <!-- start sidebar menu -->
+    {% include 'includes/sidebar.html' %}
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+
+    <div class="page-content-wrapper">
+        <div class="page-content container mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="white-box">
+                        <h3><b>CARD S/NO: {{exam_card_number}}</b> <span class="pull-right"></span></h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 mb-2 p-4">
+                                <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4 text">
+                                        <p class="text-center addr-font-h3">
+                                            Rongo University
+                                            Stuent Examination Card
+                                        </p>
+                                        <p class="text-center">
+                                            <img src="{% static 'img/logo.png' %}" alt="logo" class="logo-default" />
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8 text">
+                                        <p class="text-center text-muted">
+                                            AUTHORITY TO SIT END OF SEMESTER EXAMINATION
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="pull-left col-md-4">
+                                        <address>
+                                            <p class="text-muted m-l-5">SCHOOL: {{user.studentprofile.school}}</p>
+                                            <p class="text-muted m-l-5">PROGRAMME: {{user.studentprofile.programme}}</p>
+                                            <p class="text-muted m-l-5">ACADEMIC YEAR: {{user.studentprofile.accademic_year}}</p>
+                                            <p class="text-muted m-l-5">YEAR OF STUDY: {{user.studentprofile.year_of_study}}</p>
+                                            <p class="text-muted m-l-5">ADMISSION NUMBER: {{user.studentprofile.adm_number}}</p>
+                                        </address>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="profile-userpic">
+                                            <img src="/profile{{user.studentprofile.profile_photo.url}}" class="img-responsive" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="pull-right text-right col-md-4">
+                                        <address>
+                                            <p class="addr-font-h2">SESSION: SEMESTER TWO</p>
+                                            <p class="font-bold addr-font-h2">STUDY METHOD: {{user.studentprofile.study_method}}</p>
+                                            <p class="text-muted m-l-30">NAME: {{user.studentprofile.first_name}} {{user.studentprofile.sirname}} {{user.studentprofile.last_name}}
+                                            </p>
+                                        </address>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-5">
+                                <div class="table-responsive m-t-40">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left">COURSE CODE :COURSE NAME</th>
+                                                <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                                <th class="text-right">BOOKLET SERIAL N0.</th>
+                                                <th class="text-right">SIGNATURE (LECTURER / INVIGILATOR)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            {% for unit  in stude_unit %}
+                                                <tr>
+                                                    <td class="text-left">{{unit.student_unit}}</td>
+                                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    </td>
+                                                    <td class="text-right"></td>
+                                                    <td class="text-right"></td>
+                                                </tr>
+                                            {% endfor %}
+                                                
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4">
+                                        <p class="text-center img-responsive" style="height: 10rem; margin-left: 28%;">
+                                            {% qr_from_text my_options size="t" image_format="png" error_correction="L"  %}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="pull-left m-t-30 text-right">
+                                    <p class="text-center"></p>
+                                    <hr>
+                                    <p>STUDENT SIGNATURE</p>
+                                </div>
+                                <div class="pull-right m-t-30 text-right">
+                                    <p class="text-center">
+                                    </p>
+                                    <hr>
+                                    <p>DEAN'S SIGNATURE & STAMP</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4">
+                                        <p class="text-center"></p>
+                                        <hr>
+                                        <p>DEPUTY REGISTRAR'S SIGNATURE</p>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <hr>
+                                <div class="text-right">
+                                    <button onclick="javascript:window.print();" class="btn btn-default btn-outline"
+                                        type="button"> <span><i class="fa fa-print"></i> Print</span> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+    {% include 'includes/applicationsettings.html' %}
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+{% endblock %}

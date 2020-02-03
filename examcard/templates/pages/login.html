@@ -1,0 +1,41 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block content %}
+<div class="limiter">
+    <div class="container-login100 page-background">
+        {% for field in form %} 
+            {% for error in field.errors %}
+                <div class="alert alert-info">
+                    <p class="text-danger">{{error}}</p>
+                </div>                        
+            {% endfor %}
+        {% endfor %}
+        <div class="wrap-login100">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <span class="login100-form-logo">
+                    <img alt="" src="{% static 'img/logo-2.png' %}">
+                </span>
+                <span class="login100-form-title p-b-34 p-t-27">
+                    Sign In
+                </span>
+                <div class="wrap-input100 validate-input" data-validate="Enter username">
+                    {{ form.username }}
+                    <i class="material-icons focus-input100 text-warning">person_pin</i>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    {{ form.password }}
+                    <i class="material-icons focus-input100 text-warning">fingerprint</i>
+                </div>
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">
+                        Sign In
+                    </button>
+                    <a href="{% url 'student_register' %}" class="text-white ml-5 mt-4">Dont't Have an Account?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end page container -->
+{% endblock %}

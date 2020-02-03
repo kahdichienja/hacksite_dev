@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+{% load static %}
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="Responsive Admin Template" />
+    <meta name="author" content="SmartUniversity" />
+    <title>Smart University</title>
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- icons -->
+    <link href="{% static 'fonts/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'fonts/material-icon.css' %}" rel="stylesheet" type="text/css" />
+    <!--bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/summernote.css' %}" rel="stylesheet">
+    <!-- Material Design Lite CSS -->
+    <link rel="stylesheet" href="{% static 'css/material.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/material_style.css' %}">
+    <!-- inbox style -->
+    <link href="{% static 'css/inbox.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Theme Styles -->
+    <link href="{% static 'css/theme_style.css' %}" rel="stylesheet" id="rt_style_components" type="text/css" />
+    <link href="{% static 'css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/theme-color.css' %}" rel="stylesheet" type="text/css" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+</head>
+<!-- END HEAD -->
+
+
+<body
+    class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+    {% if messages %}
+    {% for  message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% block content %}
+
+    {% endblock %}
+    <!-- start footer -->
+    <div class="page-footer">
+        <div class="page-footer-inner"> 2020 &copy; University
+            <a href="" target="_top" class="makerCss"></a>
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <!-- end footer -->
+    </div>
+    <!-- start js include path -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/jquery.blockui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+    <!-- bootstrap -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-switch.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sparkline.js' %}"></script>
+    <script src="{% static 'js/sparkline-data.js' %}"></script>
+    <!-- Common js-->
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/layout.js' %}"></script>
+    <script src="{% static 'js/theme-color.js' %}"></script>
+    <!-- material -->
+    <script src="{% static 'js/material.min.js' %}"></script>
+    <!-- chart js -->
+    <script src="{% static 'js/Chart.bundle.js' %}"></script>
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/home-data.js' %}"></script>
+    <!-- summernote -->
+    <script src="{% static 'js/summernote.js' %}"></script>
+    <script src="{% static 'js/summernote-data.js' %}"></script>
+    <!-- end js include path -->
+</body>
+
+</html>

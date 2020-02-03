@@ -1,0 +1,74 @@
+{% load static %}
+<!-- start header -->
+<div class="page-header navbar navbar-fixed-top">
+    <div class="page-header-inner ">
+        <!-- logo start -->
+        <div class="page-logo">
+            <a href="index.html">
+                <span class="logo-icon material-icons fa-rotate-45">school</span>
+                <span class="logo-default">Smart</span> </a>
+        </div>
+        <!-- logo end -->
+        <ul class="nav navbar-nav navbar-left in">
+            <li><a href="#" class="menu-toggler sidebar-toggler"><i class="material-icons">menu</i></a></li>
+        </ul>
+        <!-- form here -->
+        <!-- start mobile menu -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+            data-target=".navbar-collapse">
+            <span></span>
+        </a>
+        <!-- end mobile menu -->
+        <!-- start header menu -->
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="javascript:;" class="fullscreen-btn"><i class="material-icons">fullscreen</i></a></li>
+                <!-- start language menu -->
+                <li class="dropdown language-switch">
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img
+                            src="{% static 'img/flags/gb.png' %}" class="position-left" alt=""> English <i class="material-icons">arrow_drop_down</i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="english"><img src="{% static 'img/flags/gb.png' %}" alt=""> English</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- end language menu -->
+                <!-- start manage user dropdown -->
+                <li class="dropdown dropdown-user">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                        data-close-others="true">
+                        <img alt="" class="img-circle " src="/profile{{user.studentprofile.profile_photo.url}}" />
+                        <span class="username username-hide-on-mobile"> {{user.username}} </span>
+                        <i class="material-icons">arrow_drop_down</i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li>
+                            <a href="{% url 'student_create_profile' %}">
+                                <i class="material-icons">person</i> Profile </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="material-icons">help</i> Help
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{% url 'user_log_out' %}">
+                                <i class="material-icons">visibility_off</i> Log Out </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- end manage user dropdown -->
+                <li class="dropdown dropdown-quick-sidebar-toggler">
+                    <a id="headerSettingButton" class="mdl-button mdl-js-button mdl-button--icon pull-right"
+                        data-upgraded=",MaterialButton">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- end header -->

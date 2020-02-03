@@ -1,0 +1,78 @@
+{% extends 'examcardbase.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-container">
+    <!-- start sidebar menu -->
+    {% include 'includes/sidebar.html' %}
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">Exarm Card Report Lists</div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+                                href="{% url 'home_dashboard' %}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">Card Report</li>
+                    </ol>
+                </div>
+                {% if messages %}
+                {% for  message in messages %}
+                <div class="alert alert-{{message.tags}}">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <!-- start widget -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-sm-12 card-box">
+                           <div class="container mb-3">
+                               <div>
+                                   <h2s>Students Attendance Register</h2s>
+                                   
+                               </div>
+                                <table class="table display product-overview mb-30 mt-4 table-responsive" id="support_table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Sudent Info.</th>
+                                            <th>Message</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+
+                                        {% for report in report_list_qs %}
+                                        <tr>
+                                            <td>{{ report.id  }}</td>
+                                            <td>{{ report.student|safe  }} </td>
+                                            <td>>{{report.message|linebreaks}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end widget -->
+
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+    {% include 'includes/applicationsettings.html' %}
+    <!-- end chat sidebar -->
+</div>
+
+{% endblock %}

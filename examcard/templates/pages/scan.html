@@ -1,0 +1,191 @@
+{% extends 'examcardbase.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-container">
+    <!-- start sidebar menu -->
+    {% include 'includes/sidebar.html' %}
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">Exarm Card Scanner</div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item"
+                                href="{% url 'home_dashboard' %}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">Card Scarnner</li>
+                    </ol>
+                </div>
+                {% if messages %}
+                {% for  message in messages %}
+                <div class="alert alert-{{message.tags}}">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <!-- start widget -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <form action="{% url 'scan' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card-box">
+                            <div class="card-head">
+                                <header>Scanner <span class="text-danger">(Click the QRCode Icon To Scan)</span> </header>
+                                <div id="panel-button" class="mdl-button mdl-js-button mdl-button--icon pull-right"
+                                    data-upgraded=",MaterialButton">
+                                    <i class="material-icons">more_vert</i>
+                                </div>
+                                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                    data-mdl-for="panel-button">
+                                    <li class="mdl-menu__item"><i class="material-icons">assistant_photo</i>Action
+                                    </li>
+                                    <li class="mdl-menu__item"><i class="material-icons">print</i>Another action
+                                    </li>
+                                    <li class="mdl-menu__item"><i class="material-icons">favorite</i>Something else
+                                        here</li>
+                                </ul>
+                            </div>
+                            <div class="card-body row">
+                                <div class="col-lg-4 p-t-20">
+                                    <div
+                                        class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                        <input type=text size=16 name="q" class="qrcode-text mdl-textfield__input">
+                                        <label class="qrcode-text-btn" style="margin-left: 92.5%; margin-top: -3rem;">
+                                            <input class="mdl-textfield__label" type=file accept="image/*" capture=environment
+                                                onclick="return showQRIntro();" onchange="openQRCamera(this);"
+                                                tabindex=-1>
+                                        </label>
+                                        <label class="mdl-textfield__label">Tracking Code</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 p-t-20 text-center">
+                                    <button type="submit"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Validate</button>
+                                    <button type="reset"
+                                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+                                </div>
+                                <div class="col-lg-12 p-t-20">
+                                    <table class="table display product-overview mb-30 table-responsive" id="support_table">
+                                        <thead>
+                                            <tr>
+                                                <th>Admission No.</th>
+                                                <th>Name</th>
+                                                <th>Fees Completion</th>
+                                                <th>Exam Card Validity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            {% if fee_qs  %}
+                                            <tr>
+                                                <td>{{profile_qs.adm_number}} </td>
+                                                <td>{{profile_qs.first_name}} {{profile_qs.sirname}} {{profile_qs.last_name}}</td>
+                                                <td>
+                                                    <span class="label label-sm label-success">{{fee_qs.is_completed}}</span>
+                                                </td>
+                                                <td>
+                                                    
+                                                    {% if fee_qs.is_completed == 0 %}
+                                                        <span class="label label-sm label-danger"> Compromised Exam Card</span>
+                                                    {% else %}
+                                                        <span class="label label-sm label-success"> Valid Exam Card</span>
+                                                    {% endif %}
+                                                        
+                                                </td>
+                                            </tr> 
+                                            {% else %}
+                                            <tr>
+                                                <td>
+                                                    <p class="text-info">Scan Another Card.</p>
+                                                </td>
+                                            </tr>
+                                            {% endif %}
+                                                
+                                            
+                                        </tbody>
+                                    </table>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end widget -->
+
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+    {% include 'includes/applicationsettings.html' %}
+    <!-- end chat sidebar -->
+</div>
+
+
+<style>
+    body,
+    input {
+        font-size: 14pt
+    }
+
+    input,
+    label {
+        vertical-align: middle
+    }
+
+    .qrcode-text {
+        padding-right: 1.7em;
+        margin-right: 0
+    }
+
+    .qrcode-text-btn {
+        display: inline-block;
+        background: url(//dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50% no-repeat;
+        height: 1em;
+        width: 1.7em;
+        margin-left: -1.7em;
+        cursor: pointer
+    }
+
+    .qrcode-text-btn>input[type=file] {
+        position: absolute;
+        overflow: hidden;
+        width: 1px;
+        height: 1px;
+        opacity: 0
+    }
+</style>
+<script src="{% static 'js/qr_packed.js' %}">
+</script>
+
+<script>
+    function openQRCamera(node) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            node.value = "";
+            qrcode.callback = function (res) {
+                if (res instanceof Error) {
+                    alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+                } else {
+                    node.parentNode.previousElementSibling.value = res;
+                }
+            };
+            qrcode.decode(reader.result);
+        };
+        reader.readAsDataURL(node.files[0]);
+    }
+
+    function showQRIntro() {
+        return confirm("Use your camera to take a picture of a QR code.");
+    }
+</script>
+
+{% endblock %}
