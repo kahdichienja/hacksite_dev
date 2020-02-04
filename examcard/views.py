@@ -14,7 +14,6 @@ from examcard.forms import UserLoginForm, StudentProfileForm, UserRegisterForm, 
 import random
 from examcard.decorators import anonymous_required, superuser_only
 
-@superuser_only
 @login_required(login_url='login')
 def add_unit(request):
     context = {}
