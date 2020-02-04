@@ -18,7 +18,7 @@ class NiceProject():
 
 backdoor Screenshot:
 
-![backdoor Screenshot](hacksite/examcard/static/img/git.jpg)
+![backdoor Screenshot](examcard/static/img/git.jpg)
 
 ### Tasks
 
