@@ -12,8 +12,9 @@ from examcard.models import StudentProfile, Fee, Log,Report, Unit, StudentUnit
 from examcard.forms import UserLoginForm, StudentProfileForm, UserRegisterForm, ReportForm, StudentUnitForm
 # Create your views here.
 import random
+from examcard.decorators import anonymous_required, superuser_only
 
-
+@superuser_only
 @login_required(login_url='login')
 def add_unit(request):
     context = {}
