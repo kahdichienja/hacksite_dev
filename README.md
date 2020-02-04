@@ -2,11 +2,8 @@
 
 Its an Online exam card Oauth app from validating exam cards based on ``QR Code``
 
-You can use one `#` all the way up to `######` six for different heading sizes.
 
-If you'd like to quote someone, use the > character before the line:
-
-> Its Not Opensource.
+> It's Not Opensource.
 > - Agoo Kahdichienja Clinton
 
 
@@ -17,3 +14,16 @@ class NiceProject():
     def nice(url):
         clone.self.url
 ```
+
+
+backdoor Screenshot:
+
+![backdoor Screenshot](hacksite/examcard/static/img/git.jpg)
+
+### Tasks
+
+- [x] Backdoor site
+- [x] uni + clone mimic
+- [ ] prototype...
+- [ ] Cost
+- [ ] launch
