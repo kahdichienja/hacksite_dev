@@ -24,6 +24,6 @@ backdoor Screenshot:
 
 - [x] Backdoor site
 - [x] uni + clone mimic
-- [ ] prototype...
-- [ ] Cost
+- [x] prototype...
+- [x] Cost
 - [ ] launch
