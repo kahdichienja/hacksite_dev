@@ -68,7 +68,7 @@ def exam_card(request):
 @staff_member_required(login_url='admin:login')
 @login_required(login_url='login')
 def log_list(request):
-    log_qs = Log.objects.all()
+    log_qs = Log.objects.filter(user_id = request.user.id).order_by('-id')
     context = {}
     context['log_qs'] = log_qs
     if request.method == "POST":
@@ -119,22 +119,27 @@ def make_report(request, id):
 def exam_card_scanner(request):
     context = {}
     if request.method == "POST":
-        qs = request.POST['q'].split()[4:][0]
-        # print(qs)
-        profile_qs = StudentProfile.objects.get(adm_number = qs)
-        fee_qs = Fee.objects.get(profile_id = profile_qs.id)
-        log_save = Log.objects.create(
-            user_id = request.user.id,
-            profile_id = profile_qs.id,
-            fee_id = fee_qs.profile_id,
+        try:
+            qs = request.POST['q'].split()[4:][0]
+            # print(qs)
+            profile_qs = StudentProfile.objects.get(adm_number = qs)
+            fee_qs = Fee.objects.get(profile_id = profile_qs.id)
+            log_save = Log.objects.create(
+                user_id = request.user.id,
+                profile_id = profile_qs.id,
+                fee_id = fee_qs.profile_id,
 
-        )
-        log_save.save()
-        # print(profile_qs.id)
-        context['profile_qs'] = profile_qs
-        context['fee_qs'] = fee_qs
-        # create logs
-
+            )
+            log_save.save()
+             # print(profile_qs.id)
+            context['profile_qs'] = profile_qs
+            context['fee_qs'] = fee_qs
+            # create logs
+        except IndexError:
+            messages.success(
+                request, f'Cannot identify the studen, Fake exam card')
+            return redirect('/profile/scan/')
+            
         return render(request, 'pages/scan.html', context)
     else:
         return render(request, 'pages/scan.html', context)
